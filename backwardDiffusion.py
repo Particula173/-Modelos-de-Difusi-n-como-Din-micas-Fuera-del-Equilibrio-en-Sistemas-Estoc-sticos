@@ -140,7 +140,7 @@ class BackwardDiffusion:
 
         fig, ax = plt.subplots()
 
-        step = max(1, len(trayectoria) // 10)
+        step = max(1, len(trayectoria) // 5)
 
         frames = range(
             0,
@@ -171,7 +171,7 @@ class BackwardDiffusion:
         anim.save(
             "backward.gif",
             writer="pillow",
-            fps=3
+            fps=10
         )
 
         plt.close(fig)

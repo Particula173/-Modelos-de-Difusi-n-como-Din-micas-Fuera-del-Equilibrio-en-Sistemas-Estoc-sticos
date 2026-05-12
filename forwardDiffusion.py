@@ -181,7 +181,7 @@ class ForwardDiffusion:
         fig, ax = plt.subplots()
 
         # 🔥 reducir número de frames
-        step = max(1, self.T // 10)
+        step = max(1, self.T // 5)
 
         frames = range(
             0,
@@ -214,7 +214,7 @@ class ForwardDiffusion:
         anim.save(
             "forward.gif",
             writer="pillow",
-            fps=3
+            fps=10
         )
 
         plt.close(fig)
