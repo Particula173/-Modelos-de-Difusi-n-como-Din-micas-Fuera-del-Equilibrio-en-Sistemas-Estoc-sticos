@@ -5,10 +5,10 @@ from diffusionApp import DiffusionApp
 from backwardDiffusion import BackwardDiffusion
 
 st.set_page_config(layout="wide")
-st.title("🔥 Diffusion Model Dashboard")
+st.title("Diffusion Model Dashboard")
 
 # =========================
-# 🔧 SIDEBAR
+# SIDEBAR
 # =========================
 st.sidebar.header("Parámetros")
 
@@ -20,16 +20,16 @@ target_mean = st.sidebar.slider("Target mean", -100, 100, 40)
 epochs = st.sidebar.slider("Epochs", 100, 10000, 3000)
 T = st.sidebar.slider("Steps difusión (T)", 50, 1000, 500)
 
-run_button = st.sidebar.button("🚀 Ejecutar")
+run_button = st.sidebar.button("Ejecutar")
 
 # =========================
 # TABS
 # =========================
 tab1, tab2, tab3, tab4 = st.tabs([
-    "📊 Datos",
-    "⚡ Forward",
-    "🔁 Backward",
-    "🎥 Dinámica"
+    "Datos",
+    "Forward",
+    "Backward",
+    "Dinámica"
 ])
 
 # =========================
@@ -37,7 +37,7 @@ tab1, tab2, tab3, tab4 = st.tabs([
 # =========================
 if run_button:
 
-    # 🔥 correr pipeline
+    #correr pipeline
     app = DiffusionApp(n_samples=50000, T=T)
 
     app.generar_datos(
@@ -49,25 +49,25 @@ if run_button:
 
     app.crear_diffusion()
 
-    # 🔥 forward simulation (necesaria para graficar)
+    #forward simulation (necesaria para graficar)
     app.diff.simular()
 
-    # 🔥 entrenar + backward
+    #entrenar + backward
     app.entrenar_modelo(epochs=epochs)
     app.generar_muestras(n_samples=2000)
 
-    # 🔥 desnormalizar
+    #desnormalizar
     original = app.data * app.std + app.mean
     generado = app.trayectoria[-1] * app.std + app.mean
 
     # =========================
-    # 📊 TAB 1: DATOS
+    # TAB 1: DATOS
     # =========================
     with tab1:
 
         st.subheader("Distribución generada")
 
-        # 👉 usando generador indirectamente (ya está en app.data)
+        #usando generador indirectamente (ya está en app.data)
         import matplotlib.pyplot as plt
         from scipy.stats import gaussian_kde
 
@@ -90,7 +90,7 @@ if run_button:
         })
 
     # =========================
-    # ⚡ TAB 2: FORWARD
+    # TAB 2: FORWARD
     # =========================
     with tab2:
 
@@ -104,7 +104,7 @@ if run_button:
         st.pyplot(app.diff.fig_skew_kurtosis())
 
     # =========================
-    # 🔁 TAB 3: BACKWARD
+    # TAB 3: BACKWARD
     # =========================
     with tab3:
 
@@ -121,20 +121,20 @@ if run_button:
 
         st.pyplot(fig)
 
-        # 🔥 evolución backward
+        # evolución backward
         st.subheader("Evolución backward")
 
         bd = BackwardDiffusion(app.diff, app.model)
         st.pyplot(bd.fig_backward(app.trayectoria))
 
-        # 🔥 evaluación
+        #evaluación
         st.subheader("Evaluación")
 
         eval_stats = app.evaluar()
         st.json(eval_stats)
         
     # =========================
-    # 🎥 TAB 4: DINÁMICA
+    # TAB 4: DINÁMICA
     # =========================
     with tab4:
 
