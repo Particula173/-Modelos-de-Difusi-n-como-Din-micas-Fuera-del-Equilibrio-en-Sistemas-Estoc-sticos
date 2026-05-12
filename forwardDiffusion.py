@@ -181,7 +181,7 @@ class ForwardDiffusion:
         fig, ax = plt.subplots()
 
         # 🔥 reducir número de frames
-        step = max(1, self.T // 1)
+        step = max(1, self.T // 50)
 
         frames = range(
             0,

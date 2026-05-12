@@ -140,7 +140,7 @@ class BackwardDiffusion:
 
         fig, ax = plt.subplots()
 
-        step = max(1, len(trayectoria) // 1)
+        step = max(1, len(trayectoria) // 50)
 
         frames = range(
             0,
