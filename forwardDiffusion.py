@@ -182,7 +182,7 @@ class ForwardDiffusion:
 
         # 🔥 reducir número de frames
         # step = max(1, self.T // 50)
-        step=1
+        step=10
         frames = range(
             0,
             len(self.historial),
