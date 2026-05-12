@@ -214,7 +214,7 @@ class ForwardDiffusion:
         anim.save(
             "forward.gif",
             writer="pillow",
-            fps=20
+            fps=5
         )
 
         plt.close(fig)

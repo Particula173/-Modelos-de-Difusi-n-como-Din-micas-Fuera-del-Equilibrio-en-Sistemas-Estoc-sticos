@@ -171,7 +171,7 @@ class BackwardDiffusion:
         anim.save(
             "backward.gif",
             writer="pillow",
-            fps=20
+            fps=5
         )
 
         plt.close(fig)
