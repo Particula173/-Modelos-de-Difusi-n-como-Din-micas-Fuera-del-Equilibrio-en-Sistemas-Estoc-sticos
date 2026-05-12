@@ -1,0 +1,1 @@
+# -Modelos-de-Difusi-n-como-Din-micas-Fuera-del-Equilibrio-en-Sistemas-Estoc-sticos
